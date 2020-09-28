@@ -247,7 +247,8 @@
 				},
 				"fornix_rupture": {
 					"type": "string",
-					"description": "Presence of a fornix rupture, caused by the urolithiasis"
+					"description": "Presence of a fornix rupture, caused by the urolithiasis",
+					"enum": ["No", "Yes", "Unknown", "NA"]
 				},
 				"comment": {
 					"type": "string",
