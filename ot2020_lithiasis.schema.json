@@ -21,12 +21,12 @@
 		},
 		"patient_birth": {
 			"type": "string",
-			"description": "Date of birth, format yyyy-mm-ddThh:mm:ss+00:00",
+			"description": "Date of birth, format yyyy-mm-dd",
 			"format": "date"
 		},
 		"exam_date_time": {
 			"type": "string",
-			"description": "Date and time of exam",
+			"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
 			"format": "date-time"
 		},
 		"exam_type": {
@@ -202,7 +202,7 @@
 				"location": {
 					"type": "string",
 					"description": "Location of the uro lithiasis to be described in the previously defined urinary tract",
-					"enum": ["pyelo_calyx", "puj", "ureter_prox", "ureter_dist", "vuj", "bladder"]
+					"enum": ["Renal pelvis", "Renal major calyx", "Renal minor calyx", "Pelvi-ureteric junction", "Proximal ureter", "Distal ureter", "Vesico-ureteric junction", "Bladder"]
 				},
 				"corraliform": {
 					"type": "string",
@@ -248,7 +248,7 @@
 				"fornix_rupture": {
 					"type": "string",
 					"description": "Presence of a fornix rupture, caused by the urolithiasis",
-					"enum": ["No", "Yes", "Unknown", "NA"]
+					"enum": ["No", "Yes", "Unknown", "NA"],
 				},
 				"comment": {
 					"type": "string",
