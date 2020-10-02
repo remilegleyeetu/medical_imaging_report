@@ -1,0 +1,138 @@
+%YAML 1.2
+---
+Exam:
+  schema: medical_imaging_report/ot2020_lithiasis.schema.json
+  nir: nir12345678910
+  patient_first_name: Marie
+  patient_name: Trencart
+  patient_birth: 1901-01-01
+  exam_date_time: 2020-10-30T14:00:00
+  exam_type: CT
+  physician: Philippe PUECH
+  device_model: MX Twin Flash, Marconi Medical Systems, Cleveland, Ohio
+  device_date: 2020-01-01
+  exam_indication: Abdominal pain
+  condition_contrast: "No"
+  condition_low_dose: Low dose
+  condition_acute: "Yes"
+  condition_fever: "No"
+  condition_derivation: Upper tract drainage
+  condition_radiation: 276
+  abnormal_liver: "No"
+  abnormal_adrenals: "No"
+  abnormal_pancreas: "No"
+  abnormal_spleen: "No"
+  abnormal_ovaries: "No"
+  abnormal_lymphnode: "Yes"
+  infiltration_gallbladder: "No"
+  infiltration_appendix: "No"
+  infiltration_sigmoid: "No"
+  pneumoperitoneum: "No"
+  intraperitoneal_effusion: "No"
+  urinary_tract_duplication: Right
+  renal_transplant: "No"
+  bladder_lithiasis: "Yes"
+  pelvic_phlebolith: "Yes"
+  lithiasis_n: 3
+  lithiasis_results:
+    - lithiasis_id: l1 
+      evolution: New
+      lateralisation: Left
+      location: Renal pelvis
+      coralliform: "No"
+      size: 11
+      density: 600 
+      uvj_distance: NA
+      infiltration: "Yes"
+      obstruction: "No"
+      nephrography: Normal
+      fornix_rupture: "No"
+      comment: NA
+    - lithiasis_id: l2
+      evolution: Stable
+      lateralisation: Right upper pole
+      location: Pelvi-ureteric junction
+      corraliform: "No"
+      size: 8
+      density: 700
+      uvj_distance: NA
+      infiltration: "No"
+      obstruction: Minor calyces dilatation
+      nephrography: Retarded
+      fornix_rupture: "No"
+      comment: NA
+    - lithiasis_id: l3
+      evolution: Stable
+      lateralisation: NA
+      location: Bladder
+      corraliform: "No"
+      size: 8
+      density: 700
+      uvj_distance: NA
+      infiltration: "No"
+      obstruction: "No"
+      nephrography: Normal
+      fornix_rupture: "No"
+      comment: NA
+  urinary_tract_results:
+    - urinary_tract_id: ut1
+      lateralisation: Left
+      diversion: "No"
+      renal_height: 108 
+      renal_volume: NA
+      renal_contour_deformity: "No"
+      renal_parenchymal_anomaly: Unknown
+      interlabial_pelvic_diameter:  16
+      extra_sinusal_pelvis: "No"
+      ureteral_diameter: 0
+      ureteral_dilatation: "No"
+      pyelocaliceal_dilatation: "No"
+      pelviureteric_junction: "No"
+      urinoma: "No"
+      hematuria: "Yes"
+      pyelonephritis_sign: "No"
+      comment: Hypodense lesion corresponding to a renal cyst
+    - urinary_tract_id: ut2
+      lateralisation: Right upper pole
+      diversion: "No"
+      renal_height: 70 
+      renal_volume: NA
+      renal_contour_deformity: "No"
+      renal_parenchymal_anomaly: Unknown
+      interlabial_pelvic_diameter: 9
+      extra_sinusal_pelvis: "No"
+      ureteral_diameter: 2
+      ureteral_dilatation: "No"
+      pyelocaliceal_dilatation: "Yes"
+      pelviureteric_junction: "No"
+      urinoma: "No"
+      hematuria: "No"
+      pyelonephritis_sign: "No"
+      comment: NA
+    - urinary_tract_id: ut3
+      lateralisation: Right lower pole
+      diversion: pyelostomy
+      renal_height: 40
+      renal_volume: NA
+      renal_contour_deformity: "No"
+      renal_parenchymal_anomaly: Unknown
+      interlabial_pelvic_diameter: 4
+      extra_sinusal_pelvis: "No"
+      ureteral_diameter: 0
+      ureteral_dilatation: "No"
+      pyelocaliceal_dilatation: "No"
+      pelviureteric_junction: Unknown
+      urinoma: "No"
+      hematuria: "No"
+      pyelonephritis_sign: "No"
+      comment: NA
+  findings: Abnormal compatible with clinical description
+  further_imaging: "No"
+  further_imaging_type: NA
+  further_physician: Further physician opinion advised
+  further_physician_type: Urologist
+  control_imaging: Control exam needed
+  control_imaging_delay: 6 weeks
+  comment: NA
+  conclusion: NA
+  conclusion_validation: true
