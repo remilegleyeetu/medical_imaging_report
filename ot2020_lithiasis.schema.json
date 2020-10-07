@@ -4,7 +4,7 @@
 	"type": "object",
     "required": ["patient_first_name", "patient_first_name", "patient_birth", "conclusion_validation"],
     "properties": {
-		"nir": {
+		"identifier": {
 			"type": "string",
 			"description": "Patient unique identifier",
 			"minLen": 13,
