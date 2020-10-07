@@ -2,7 +2,7 @@
 ---
 Exam:
   schema: medical_imaging_report/ot2020_lithiasis.schema.json
-  nir: nir12345678910
+  identifier: id12345678910
   patient_first_name: Marie
   patient_name: Trencart
   patient_birth: 1901-01-01

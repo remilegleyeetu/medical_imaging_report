@@ -9,7 +9,7 @@ page.output(html`
 // Patient information
 
 page.section("Patient", () => {
-    page.text("*nir", "NIR")
+    page.text("*identifier", "Patient identifier")
     page.text("*patient_first_name", "First name")
     page.text("*patient_name", "Name")
     page.date("*patient_birth", "Date of birth")
@@ -42,7 +42,7 @@ page.section("Exam", () => {
     page.number("condition_radiation", "Radiation dose related to the exam, mGy.cm", {min:0})
     })
 
-// Résults
+// Results
 
 page.section("Results", () => { 
     page.enum(
@@ -107,6 +107,9 @@ page.section("Results", () => {
     page.textArea("result_comment", "Comment") 
 })
 
+
+// Lithiasis results
+
 page.section("Lithiase", () => { 
    
 for (let i = 1; i <= page.value("n_lithiasis"); i++) {
@@ -135,208 +138,109 @@ for (let i = 1; i <= page.value("n_lithiasis"); i++) {
             "Lithiasis maximal diameter (mm)", {min:0, max:50})
         page.number(
             "density" + i,
-            "Lithiasis density (Hounsfield Units)"), {min:-1000, max:+3000}
-        page.binary(
-            "lithiasis_infiltration" + i,
-            "Infiltration")
+            "Lithiasis density (Hounsfield Units)", {min:-1000, max:+3000})
         page.number(
             "uvj_distance" + i,
             "Distance between the lithiasis and the uretero-vesical junction (cm)", {min:0, max:50})
-    
+        page.enum(
+            "lithiasis_infiltration" + i,
+            "Tissue infiltration, caused by the urolithiasis",
+            ["No", "Yes", "Unknown", "NA"])
+        page.enumDrop(
+            "obstruction" + i,
+            "Urinary tract obstruction sign, caused by the urolithiasis",
+            ["No", "Visible", "Minor calyces dilatation", "Major calyces dilatation", "Pelvic dilatation", "NA"])
+        page.enum(
+            "nephrography" + i,
+            "Perturbation of the renal perfusion, caused by the urolithiasis (if enhanced contrast CT)",
+           ["Normal", "Retarded", "Non measurable", "NA"])
+        page.enum(
+            "fornix_rupture" + i,
+            "Presence of a fornix rupture, caused by the urolithiasis",
+           ["No", "Yes", "Unknown", "NA"])
+        page.text("comment" + i, "Free text for manually added comment to the uro lithiasis description")
     })
 }
 })
 
-// Résultats pour l'arbre urinaire
+// Urinary tract results
 
 page.section("Voies urinaires", () => {
-    page.binary("urinary_tract_variation", "Variation anatomique")
-    
-    if (page.value("urinary_tract_variation")) {
-        page.enum("duplication", "Duplication rénale", [
-            [null, "Non"],
-            ["right_duplication", "Droite"],
-            ["left_duplication", "Gauche"],
-            ["bilat_duplication", "Bilatérale"]])
-        page.enum("renal_transplant", "Patient transplanté", [
-            [null, "Non"],
-            ["right_graft", "Droite"],
-            ["left_graft", "Gauche"],
-            ["bilat_graft", "Bilatéral"]])    
+    page.slider("n_urinary_tract", "Number of urinary tract to describe", {min:0, max:8})
+    for (let u = 1; u <= page.value("n_urinary_tract"); u++) {
+            page.section("Urinary tract #" + u, () => {
+            page.number("urinary_tract_id" + u, "ID of the urinary tract", {value:u})
+            page.enumDrop(
+                "urinary_tract" + u, 
+                "Lateralisation of the urinary tract to be described", 
+                ["Left", "Right", "Left upper pole", "Left lower pole", "Right upper pole", "Right lower pole", "Left renal transplant", "Right renal transplant"])
+            page.enum(
+                "diversion" + u, 
+                "Presence of a urinary diversion in the described urinary tract",
+                ["No", "jj_stent", "ureteral_catheter", "pyelostomy", "NA"])
+            page.number(
+                "renal_height" + u,
+                "Measured heigh of the kidney (mm)", {min:0})
+            page.number(
+                "renal_volume" + u,
+                "Measured volume of the kidney (cm3)", {min:0})
+            page.enum(
+                "renal_contour_deformity" + u, 
+                "Presence of a morphological anomaly of the renal contour (if non contrast enhanced CT)",
+                ["No", "Yes", "Unknown", "NA"])
+            page.enum(
+                "renal_parenchyal_anomaly" + u, 
+                "Presence of a morphological anomaly of the renal contour (if non contrast enhanced CT)",
+                ["No", "Yes", "Unknown", "NA"])
+             page.number(
+                "interlabial_pelvic_diameter" + u,
+                "Measured interlabial antero-posterior diameter of the renal pelvis (mm)", {min:0})
+            page.enum(
+                "extra_sinusal_pelvis" + u, 
+                "Presence of an extra-sinusal pelvis",
+                ["No", "Yes", "Unknown", "NA"])
+             page.number(
+                "ureteral_diameter" + u,
+                "Maximal measured diameter of the ureter (mm)", {min:0})
+            page.enum(
+                "ureteral_dilatation" + u, 
+                "Presence of an abnormal ureteral dilatation",
+                ["No", "Yes", "Unknown", "NA"])
+            page.enum(
+                "pyelocaliceal_dilatation" + u, 
+                "Presence of an abnormal pyelocaliceal dilatation",
+                ["No", "Yes", "Unknown", "NA"])
+             page.enum(
+                "pelviureteric_junction" + u, 
+                "Suspicion of pelvi-ureteric junction syndrom",
+                ["No", "Yes", "Unknown", "NA"])
+             page.enum(
+                "urinoma" + u, 
+                "Presence of a peri-renal urinoma",
+                ["No", "Yes", "Unknown", "NA"])
+             page.enum(
+                "pyelonephritis_sign" + u, 
+                "Presence of pyelonephritis sign",
+                ["No", "Yes", "Unknown", "NA"])
+            page.text("urinary_tract_comment" + u, "Free text for manually added comment to the urinary tract description")
+    })
     }
+})
     
-// Droit
+// Conclusion
 
-if (page.value("duplication") == null | page.value("duplication") == "left_duplication" ) {
-    page.section("Droite", () => {
-        page.number("right_renal_diameter", "Diamètre du rein droit (mm)"), {min:0, max:300}
-        page.number("right_pelvic_diameter", "Diamètre du bassinet droit (mm)"), {min:0, max:300}
-        page.number("right_ureter_diameter", "Diamètre max de l'uretère droit (mm)"), {min:0, max:100}
-        page.enum("right_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["right_jj", "Sonde double J"],
-            ["right_ureteral_catheter", "Sonde urétérale"],
-            ["right_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("right_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["right_hydronephrosis", "Hydronephrose"],
-            ["right_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.textArea("right_comment", "Commentaire")
-    })
- }
- 
-// Gauche
-
-if (page.value("duplication") == null | page.value("duplication") == "right_duplication" ) {
-    page.section("Gauche", () => {
-        page.number("left_renal_diameter", "Diamètre du rein gauche (mm)"), {min:0, max:300}
-        page.number("left_pelvic_diameter", "Diamètre du bassinet gauche (mm)"), {min:0, max:300}
-        page.number("left_ureter_diameter", "Diamètre max de l'uretère gauche (mm)"), {min:0, max:100}
-        page.enum("left_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["left_jj", "Sonde double J"],
-            ["left_ureteral_catheter", "Sonde urétérale"],
-            ["left_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("left_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["left_hydronephrosis", "Hydronephrose"],
-            ["left_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("left_comment", "Commentaire")    
-        })
- }
-
-// Duplication Droite
-
-if (page.value("duplication") == "right_duplication" | page.value("duplication") == "bilateral_duplication") {
-    page.section("Pole supérieur droit", () => {
-        page.number("upper_right_renal_diameter", "Diamètre du pole supérieur droit (mm)"), {min:0, max:300}
-        page.number("upper_right_pelvic_diameter", "Diamètre du bassinet droit supérieur (mm)"), {min:0, max:300}
-        page.number("upper_right_ureter_diameter", "Diamètre max de l'uretère du pôle supérieur droit (mm)"), {min:0, max:100}
-        page.enum("upper_right_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["upper_right_jj", "Sonde double J"],
-            ["upper_right_ureteral_catheter", "Sonde urétérale"],
-            ["upper_right_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("upper_right_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["upper_right_hydronephrosis", "Hydronephrose"],
-            ["upper_right_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("upper_right_comment", "Commentaire")
-    })
-        page.section("Pole inférieur droit", () => {
-        page.number("lower_right_renal_diameter", "Diamètre du pole inférieur droit (mm)"), {min:0, max:300}
-        page.number("lower_right_pelvic_diameter", "Diamètre du bassinet droit inférieur (mm)"), {min:0, max:300}
-        page.number("lower_right_ureter_diameter", "Diamètre max de l'uretère du pôle inférieur droit (mm)"), {min:0, max:100}
-        page.enum("lower_right_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["lower_right_jj", "Sonde double J"],
-            ["lower_right_ureteral_catheter", "Sonde urétérale"],
-            ["lower_right_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("lower_right_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["lower_right_hydronephrosis", "Hydronephrose"],
-            ["lower_right_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("lower_right_comment", "Commentaire")
-    })
- }
-
-// Duplication Gauche
-
-if (page.value("duplication") == "left_duplication" | page.value("duplication") == "bilateral_duplication") {
-    page.section("Pole supérieur gauche", () => {
-        page.number("upper_left_renal_diameter", "Diamètre du pole supérieur gauche (mm)"), {min:0, max:300}
-        page.number("upper_left_pelvic_diameter", "Diamètre du bassinet gauche supérieur (mm)"), {min:0, max:300}
-        page.number("upper_left_ureter_diameter", "Diamètre max de l'uretère du pôle supérieur gauche (mm)"), {min:0, max:100}
-        page.enum("upper_left_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["upper_left_jj", "Sonde double J"],
-            ["upper_left_ureteral_catheter", "Sonde urétérale"],
-            ["upper_left_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("upper_left_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["upper_left_hydronephrosis", "Hydronephrose"],
-            ["upper_left_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("upper_left_comment", "Commentaire")
-    })
-        page.section("Pole inférieur gauche", () => {
-        page.number("lower_left_renal_diameter", "Diamètre du pole inférieur gauche (mm)"), {min:0, max:300}
-        page.number("lower_left_pelvic_diameter", "Diamètre du bassinet gauche inférieur (mm)"), {min:0, max:300}
-        page.number("lower_left_ureter_diameter", "Diamètre max de l'uretère du pôle inférieur gauche (mm)"), {min:0, max:100}
-        page.enum("lower_left_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["lower_left_jj", "Sonde double J"],
-            ["lower_left_ureteral_catheter", "Sonde urétérale"],
-            ["lower_left_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("lower_left_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["lower_left_hydronephrosis", "Hydronephrose"],
-            ["lower_left_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("lower_left_comment", "Commentaire")
-    })
- }
-
-// Greffon Droit
-
-if (page.value("renal_transplant") == "right_graft" | page.value("renal_transplant") == "bilat_graft") {
-    page.section("Greffon droit", () => {
-        page.number("right_graft_renal_diameter", "Diamètre du greffon droit (mm)"), {min:0, max:300}
-        page.number("right_graft_pelvic_diameter", "Diamètre du bassinet du greffon droit (mm)"), {min:0, max:300}
-        page.number("right_graft_ureter_diameter", "Diamètre max de l'uretère du greffon droit (mm)"), {min:0, max:100}
-        page.enum("right_graft_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["right_graft_jj", "Sonde double J"],
-            ["right_graft_ureteral_catheter", "Sonde urétérale"],
-            ["right_graft_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("right_graft_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["right_graft_hydronephrosis", "Hydronephrose"],
-            ["right_graft_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("right_graft_comment", "Commentaire")
-    })
- }
-
-// Greffon Gauche
-
-if (page.value("renal_transplant") == "left_graft" | page.value("renal_transplant") == "bilat_graft") {
-    page.section("Greffon gauche", () => {
-        page.number("left_graft_renal_diameter", "Diamètre du greffon gauche (mm)"), {min:0, max:300}
-        page.number("left_graft_pelvic_diameter", "Diamètre du bassinet du greffon gauche (mm)"), {min:0, max:300}
-        page.number("left_graft_ureter_diameter", "Diamètre max de l'uretère du greffon gauche (mm)"), {min:0, max:100}
-        page.enum("left_graft_diversion", "Dérivation urinaire", [
-            [null, "Non"],
-            ["left_graft_jj", "Sonde double J"],
-            ["left_graft_ureteral_catheter", "Sonde urétérale"],
-            ["left_graft_pyelostomy", "Pyélostomie"]
-            ])
-        page.enum("left_graft_dilatation", "Dilatation", [
-            [null, "Non"], 
-            ["left_graft_hydronephrosis", "Hydronephrose"],
-            ["left_graft_ureterohydronephrosis", "Uretero-hydronephrose"]
-            ])
-        page.text("left_graft_comment", "Commentaire")
-    })
- }
-
-        })
-
-page.section("Conclusion", () => {    
-    page.text("result_conclusion", "Conclusion") // permettre un copier coller ?
-    page.output("Patient présentant " 
-    + page.value("n_lithiasis") + " lithiase(s) localisées à " 
-    + page.value("lithiasis_lateralisation1")
-    )
+page.section("Conclusion", () => {
+    page.enum("findings", 
+    "Qualification of the findings",
+    ["Normal", "Abnormal compatible with clinical description", "Abnormal not explanatory for clinical description", "Unknown", "NA"])
+    page.enum("further_imaging", 
+    "Need for further imaging exam",
+    ["No", "Additionnal imaging exam needed", "Urgent additional imaging exam need", "Unknown", "NA"])
+    page.text("further_imaging_type", "Type of further imaging exam advised")
+    page.enum("control_imaging", 
+    "Need for control imaging exam",
+    ["No", "Control exam needed", "Unknown", "NA"])
+    page.text("control_imaging_delay", "Time to control imaging exam")
+    page.textArea("comment_conclusion", "Free text for manually added results, or comment")
+    page.binary("*conclusion_validation", "Conclusion Validation", {help:"The physician must validate the automatically generated conclusion, after manual modification if required"})
 })
