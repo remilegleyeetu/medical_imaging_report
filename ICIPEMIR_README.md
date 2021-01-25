@@ -30,73 +30,74 @@ Default syntax for defining each variable is presented through some example:
 ### Boolean
 
 ```JSON
-		"conclusion_validation": {
-			"type": "boolean",
-			"description": "The physician must validate the automatically generated conclusion, after manual modification if required",
-			"default": false
-		}
+"conclusion_validation": {
+	"type": "boolean",
+	"description": "The physician must validate the automatically generated conclusion, after manual modification if required",
+	"default": false
+},
 ```
 
 ### Integer
 
 ```JSON
-		"lithiasis_n": {
-			"type": "integer",
-			"description": "Number of lithiasis detected on the exam",
-			"minimum": 0,
-			"maximum": 100
-    },  
+"lithiasis_n": {
+	"type": "integer",
+	"description": "Number of lithiasis detected on the exam",
+	"minimum": 0,
+	"maximum": 100
+},  
 ```
 
 ### Real
 ```JSON
-    "renal_height": {
-      "type": "number",
-      "description": "Measured heigh of the kidney (mm)",
-      "minimum": 0
-    },
+"renal_height": {
+	"type": "number",
+	"description": "Measured heigh of the kidney (mm)",
+	"minimum": 0
+},
+```
 
 ### Categorical
 
 ```JSON
-		"condition_derivation": {
-			"type": "string",
-			"description": "Urinary tract diversion in place at the time of the exam",
-			"enum": ["No", "Bladder drainage", "Upper tract drainage", "NA"],
-			"default": "No"
-		},
+"condition_derivation": {
+	"type": "string",
+	"description": "Urinary tract diversion in place at the time of the exam",
+	"enum": ["No", "Bladder drainage", "Upper tract drainage", "NA"],
+	"default": "No"
+},
 ```    
 
 ### String
 
 ```JSON
-		"patient_first_name": {
-			"type": "string",
-			"description": "Patient's first name",
-      "minLen": ,
-			"maxLen": ,
-			"pattern": "^$"
-      },
+"patient_first_name": {
+	"type": "string",
+	"description": "Patient's first name",
+	"minLen": ,
+	"maxLen": ,
+	"pattern": "^$"
+},
 ```
 
 ### Date
 
 ```JSON
-		"patient_birth": {
-			"type": "string",
-			"description": "Date of birth, format yyyy-mm-dd",
-			"format": "date"
-		},
+"patient_birth": {
+	"type": "string",
+	"description": "Date of birth, format yyyy-mm-dd",
+	"format": "date"
+},
 ```
 
 ### Date-time
 
 ```JSON
-		"exam_date_time": {
-			"type": "string",
-			"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
-			"format": "date-time"
-		},   
+"exam_date_time": {
+	"type": "string",
+	"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
+	"format": "date-time"
+},   
 ```
 
 ## YAML
