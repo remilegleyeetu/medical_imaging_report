@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 Exam:
-  schema: medical_imaging_report/ot2020_lithiasis.schema.json
+  schema: medical_imaging_report/ICIPEMIR_urolithiasis.schema.json
   identifier: id12345678910
   patient_first_name: Marie
   patient_name: Trencart
