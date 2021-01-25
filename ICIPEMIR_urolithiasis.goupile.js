@@ -1,4 +1,4 @@
-// Lithiasis report Goupile
+// Lithiasis report Goupile: go to https://goupile.fr/demo/app/introduction/
 
 page.pushOptions({compact: true})
 
