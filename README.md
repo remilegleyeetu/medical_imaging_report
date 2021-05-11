@@ -20,6 +20,7 @@ Fields type:
   - Categorical
   - String
   - Date
+  - Duration
 
 Variable with >1 cardinality are grouped and represented in seperate table.  
 
@@ -34,7 +35,7 @@ Default syntax for defining each variable is presented through some example:
 	"type": "boolean",
 	"description": "The physician must validate the automatically generated conclusion, after manual modification if required",
 	"default": false
-},
+}
 ```
 
 ### Integer
@@ -45,7 +46,7 @@ Default syntax for defining each variable is presented through some example:
 	"description": "Number of lithiasis detected on the exam",
 	"minimum": 0,
 	"maximum": 100
-},  
+}
 ```
 
 ### Real
@@ -54,7 +55,7 @@ Default syntax for defining each variable is presented through some example:
 	"type": "number",
 	"description": "Measured heigh of the kidney (mm)",
 	"minimum": 0
-},
+}
 ```
 
 ### Categorical
@@ -65,7 +66,7 @@ Default syntax for defining each variable is presented through some example:
 	"description": "Urinary tract diversion in place at the time of the exam",
 	"enum": ["No", "Bladder drainage", "Upper tract drainage", "NA"],
 	"default": "No"
-},
+}
 ```    
 
 ### String
@@ -77,7 +78,7 @@ Default syntax for defining each variable is presented through some example:
 	"minLen": ,
 	"maxLen": ,
 	"pattern": "^$"
-},
+}
 ```
 
 ### Date
@@ -85,9 +86,9 @@ Default syntax for defining each variable is presented through some example:
 ```JSON
 "patient_birth": {
 	"type": "string",
-	"description": "Date of birth, format yyyy-mm-dd",
+	"description": "Date of birth, format ISO 8601 yyyy-mm-dd",
 	"format": "date"
-},
+}
 ```
 
 ### Date-time
@@ -95,9 +96,19 @@ Default syntax for defining each variable is presented through some example:
 ```JSON
 "exam_date_time": {
 	"type": "string",
-	"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
+	"description": "Date and time of exam, format ISO 8601 yyyy-mm-ddThh:mm:ss",
 	"format": "date-time"
-},   
+}
+```
+
+### Duration
+
+```JSON
+"acquisition_time": {
+	"type": "string",
+	"description": "Duration of acquisition, format ISO 8601: P(n)Y(n)M(n)DT(n)H(n)M(n)S",
+	"format": "duration"
+}
 ```
 
 ## YAML
