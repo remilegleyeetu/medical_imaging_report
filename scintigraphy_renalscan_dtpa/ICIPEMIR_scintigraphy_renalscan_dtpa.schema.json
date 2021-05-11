@@ -1,0 +1,246 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema#",
+	"title": "DTPA Renal Scan Report",
+	"type": "object",
+    "required": ["patient_first_name", "patient_first_name", "patient_birth", "conclusion_validation"],
+    "properties": {
+		"identifier": {
+			"type": "string",
+			"description": "Patient unique identifier",
+			"minLen": 13,
+			"maxLen": 13,
+			"pattern": "^[0-9aAbB]{13}$"
+		},
+		"patient_first_name": {
+			"type": "string",
+			"description": "Patient's first name"
+		},
+		"patient_name": {
+			"type": "string",
+			"description": "Patient's name"
+		},
+		"patient_birth": {
+			"type": "string",
+			"description": "Date of birth, format yyyy-mm-dd",
+			"format": "date"
+		},
+		"physician": {
+			"type": "string",
+			"description": "Physician responsible for the interpretation of the imaging results"
+		},
+		"institution": {
+			"type": "string",
+			"description": "Institution in which the exam is performed"
+		},		
+		"exam_date_time": {
+			"type": "string",
+			"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
+			"format": "date-time"
+		},
+		"exam_type": {
+			"type": "string",
+			"description": "Exam type",
+			"enum": ["Scintigraphy", "NA"]
+		},
+		"device_model": {
+			"type": "string",
+			"description": "Model of imaging device"
+		},
+		"device_date": {
+			"type": "string",
+			"description": "Date of device validation",
+			"format": "date"
+		},
+		"exam_indication": {
+			"type": "string",
+			"description": "Exam indication",
+			"enum": ["Initial evaluation", "Pre operative follow up", "Post operative follow up", "Other", "NA"]
+		},
+		"activity": {
+			"type": "number",
+			"description": "Total activity, in Mega Becquerel",
+			"minimum": 0
+		},
+		"tracer": {
+			"type": "string",
+			"description": "Radio tracer, Technetium-99m Diethylenetriaminepentaacetic acid, Technetium-99m Mercaptuacetyltriglycine. ",
+			"enum": ["99mTC DTPA", "99mTC MAG3", "NA"],
+			"default": "99mTC DTPA"
+		},
+		"injection_site": {
+			"type": "string",
+			"description": "Site of tracer injection",
+			"enum": ["Peripheral IV", "Central IV", "NA"],
+			"default": "Peripheral IV"
+		},
+		"patient_position": {
+			"type": "string",
+			"description": "Position of the patient during image captation",
+			"enum": ["Lying", "Sitting", "NA"],
+			"default": "Lying"
+		},
+		"furosemid_injection": {
+			"type": "string",
+			"description": "Furosemid injection",
+			"enum": ["No", "Yes", "NA"]
+		},
+		"acquisition_time": {
+			"type": "string",
+			"description": "Duration of acquisition, ISO 8601 ABNF: P(n)Y(n)M(n)DT(n)H(n)M(n)S",
+			"format": "duration"
+		},
+		"renogram_curve": {
+			"type": "string",
+			"description": "Comparison of both renogram curves",
+			"enum": ["Normal", "Abnormal", "NA"],
+		},
+		"calculation_method": {
+			"type": "string",
+			"description": "Calculation method used for renal function estimation",
+			"enum": ["Patlack", "AUC", "NA"],
+		},
+		"urinary_tract_duplication": {
+			"type": "string",
+			"description": "Duplication of urinary tract resulting in an 'additionnal' urinary tract to describe",
+			"enum": ["No", "Right", "Left", "Bilateral", "Unknown", "NA"],
+			"default": "No"
+		},
+		"renal_transplant": {
+			"type": "string",
+			"description": "Presence of a renal transplant resulting in an 'additionnal' urinary tract to describe",
+			"enum": ["No", "Right", "Left", "Unknown", "NA"],
+			"default": "No"
+		},	
+		"bladder_diversion": {
+			"type": "string",
+			"description": "Bladder diversion in place at the time of the exam",
+			"enum": ["No", "Yes", "NA"],
+			"default": "No"
+		},	
+		"bladder_onset": {
+			"type": "string",
+			"description": "Bladder onset time, described according to ISO 8601 ABNF: P(n)Y(n)M(n)DT(n)H(n)M(n)S",
+			"format": "duration"
+		},
+		"renal_function_symmetry": {
+			"type": "string",
+			"description": "Renal function symmetry, according to the physician's evaluation",
+			"enum": ["Symmetric", "Assymetric", "NA"]
+		},	
+		"urinary_tract_results": {
+			"type": "object",
+			"description": "Successive description of urinary tracts results, taking account of the (rare) possibility of anatomical variations",
+			"properties": {
+				"urinary_tract_id": {
+					"type": "string",
+					"description": "Generated hash id for each successively described urinary tract"
+				},
+				"lateralisation": {
+					"type": "string",
+					"description": "Lateralisation of the urinary tract to be described",
+					"enum": ["Left", "Right", "Left upper pole", "Left lower pole", "Right upper pole", "Right lower pole", "Left renal transplant", "Right renal transplant"]
+				},
+				"diversion": {
+					"type": "string",
+					"description": "Presence of a urinary diversion in the described urinary tract",
+					"enum": ["No", "JJ stent", "Ureteral catheter", "Pyelostomy", "NA"],
+					"default": "No"
+				},
+				"cortical_transit_time": {
+					"type": "string",
+					"description": "Cortical transit time, described using ISO 8601 ABNF: P(n)Y(n)M(n)DT(n)H(n)M(n)S",
+					"format": "duration"
+				},
+				"cortical_transit_time_evaluation": {
+					"type": "string",
+					"description": "Cortical transit time, as evaluated by the physician",
+					"enum": ["Normal", "Retarded", "NA"]
+				},
+				"pyelocaliceal_time": {
+					"type": "string",
+					"description": "Time to pyelocaliceal passage, described using ISO 8601 ABNF: P(n)Y(n)M(n)DT(n)H(n)M(n)S",
+					"format": "duration"
+				},
+				"stasis": {
+					"type": "string",
+					"description": "Stasis of the tracer",
+					"enum": ["None", "Caliceal", "Pyelo-caliceal", "Uretero-pyelo-caliceal", "NA"]
+				},
+				"late_images": {
+					"type": "string",
+					"description": "Tracer progression on late images acquisition",
+					"enum": ["No give in or increase", "Partly give in", "Complete decrease", "NA"]
+				},
+				"parenchymal_impregnation": {
+					"type": "string",
+					"description": "Parenchymal impregnation of the tracer, as evaluated by the physician",
+					"enum": ["Early and homogeneous", "Early and heterogeneous", "Late and homogeneous", "Late and heterogeneous","NA"]
+				},
+				"kidney_size": {
+					"type": "string",
+					"description": "Kidney size, as evaluated by the physician",
+					"enum": ["Normal", "Altered", "NA"]
+				},
+				"kidney_morphology": {
+					"type": "string",
+					"description": "Kidney morphology, as evaluated by the physician",
+					"enum": ["Normal", "Abnormal", "NA"]
+				},
+				"ureteral_dilatation": {
+					"type": "string",
+					"description": "Ureteral dilatation, as evaluated by the physician",
+					"enum": ["No", "Yes", "NA"]
+				},
+				"vascular_slope": {
+					"type": "string",
+					"description": "Vascular slope, as evaluated by the physician",
+					"enum": ["Normal", "Altered", "NA"]
+				},
+				"tmax": {
+					"type": "string",
+					"description": "Tmax, described using ISO 8601 ABNF: P(n)Y(n)M(n)DT(n)H(n)M(n)S. Any Tmax > 20 min is considered as no Tmax",
+					"format": "duration"
+				},
+				"curve": {
+					"type": "string",
+					"description": "Renogram curve, as evaluated by the physician",
+					"enum": ["Spontaneous emptying complete (or almost complete)", "Spontaneous emptying incomplete","No emptying",  "NA"]
+				},
+				"renal_function": {
+					"type": "number",
+					"description": "Renal function, as evaluated by the prevously defined method, in percentage",
+					"enum": ["Spontaneous emptying, complete (or almost complete)", "Spontaneous emptying, incomplete","No emptying",  "NA"],
+					"minimum": 0,
+					"maximum": 100
+				},
+				"furosemid_test": {
+					"type": "string",
+					"description": "Furosemid test, as evaluated by the physician",
+					"enum": ["Complete emptying", "Partial emptying","No emptying",  "NA"]
+				},
+				"comment": {
+					"type": "sting",
+					"description": "Free text for manually added comment on urinary tract result",
+				}
+			},
+		},
+		"findings": {
+			"type": "string",
+			"description": "Qualification of the findings",
+			"enum": ["Normal", "Abnormal compatible with clinical description", "Abnormal not explanatory for clinical description", "Unknown", "NA"]
+		},
+		"comment": {
+			"type": "string",
+			"description": "Free text for manually added results, or comment"
+		},
+		"conclusion": {
+			"type": "string",
+			"description": "Text conclusion, automatically generated, and validated by the imaging physician"
+		},
+		"conclusion_validation": {
+			"type": "boolean",
+			"description": "The physician must validate the automatically generated conclusion, after manual modification if required",
+			"default": false
+		}
+	}
+}
