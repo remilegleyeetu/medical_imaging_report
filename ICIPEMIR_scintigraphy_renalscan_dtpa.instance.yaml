@@ -1,0 +1,51 @@
+%YAML 1.2
+---
+Exam:
+  schema: medical_imaging_report/ot2020_dtpa.schema.json
+  identifier: id12345678910
+  patient_first_name: Baudelet
+  patient_name: Emmanuel
+  patient_birth: 1901-01-01
+  physician: Marc Antoine HUBAUT
+  institution: CHU Lille
+  exam_date_time: 2021-01-01T14:00:00
+  exam_type: Scintigraphy
+  device_model: Dual detector gamma camera SYMBIA S Siemens
+  device_date: 2021-01-01
+  exam_indication: Initial evaluation
+  activity: 20
+  tracer: 99mTC DTPA
+  injection_site: Peripheral IV
+  patient_position: Lying
+  furosemid_injection: "Yes"
+  acquisition_time: PTH1M30
+  renogram_curve: Abnormal
+  calculation_method: Patlack
+  urinary_tract_duplication: Right
+  renal_transplant: "No"
+  bladder_diversion: "No"
+  bladder_onset: PT10M
+  renal_function_symmetry: Assymmetric
+  urinary_tract_results:
+    urinary_tract_id: [ut1, ut2, ut3]
+    lateralisation: [Left, Right upper pole, Right lower pole]
+    diversion: ["JJ stent", "No", "No"]
+    cortical_transit_time: [PT30S, PT45S, PT2M]
+    cortical_transit_time_evaluation: [Normal, Normal, Retarded]
+    pyelocaliceal_time: [PT2M, PT2M30S, PT5M]
+    stasis: [None, None, Pyelo-caliceal]
+    late_images:  [Complete decrease, Complete decrease, No give in or increase]
+    parenchymal_impregnation: [Early and homogeneous, Early and heterogeneous, Late and homogeneous]
+    kidney_size: [Normal, Normal, Normal]
+    kidney_morphology: [Normal, Abnormal, Abnormal]
+    ureteral_dilatation: ["No", "No", "No"]
+    vascular_slope: [Normal, Normal, Altered]
+    tmax: [PT11M, PT8M, PT8M]
+    curve: [Spontaneous emptying complete (or almost complete), Spontaneous emptying incomplete, Spontaneous emptying incomplete]
+    renal_function: [70, 20, 10]
+    furosemid_test: [Complete emptying, Complete emptying, No emptying]
+    comment: [NA, NA, NA]
+  findings: Abnormal compatible with clinical description
+  comment: NA
+  conclusion: NA
+  conclusion_validation: true
