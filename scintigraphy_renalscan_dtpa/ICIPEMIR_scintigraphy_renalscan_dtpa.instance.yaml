@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 Exam:
-  schema: medical_imaging_report/ot2020_dtpa.schema.json
+  schema: medical_imaging_report/scintigraphy_renalscan_dtpa/ICIPEMIR_scintigraphy_renalscan_dtpa.schema.json
   identifier: id12345678910
   patient_first_name: Baudelet
   patient_name: Emmanuel
