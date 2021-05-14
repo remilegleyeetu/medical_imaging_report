@@ -1,10 +1,10 @@
 %YAML 1.2
 ---
 Exam:
-  schema: medical_imaging_report//ctscan_urolithiasis/ICIPEMIR_urolithiasis.schema.json
+  schema: medical_imaging_report/ctscan_urolithiasis/ICIPEMIR_urolithiasis.schema.json
   identifier: id12345678910
-  patient_first_name: Marie
-  patient_name: Trencart
+  patient_first_name: Jane
+  patient_name: Doe
   patient_birth: 1901-01-01
   exam_date_time: 2020-10-30T14:00:00
   exam_type: CT
