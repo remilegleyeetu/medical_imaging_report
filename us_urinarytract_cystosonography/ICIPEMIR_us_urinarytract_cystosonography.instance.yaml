@@ -1,0 +1,47 @@
+%YAML 1.2
+---
+Exam:
+  schema: medical_imaging_report/us_cystosonography/ICIPEMIR_us_cystosonography.schema.json
+  identifier: id12345678910
+  patient_first_name: John
+  patient_name: Doe
+  patient_birth: 1901-01-01
+  patient_gender: Male
+  physician: Heloise LERISSON
+  institution: CHU Lille
+  exam_date_time: 2021-01-01T14:00:00
+  exam_type: Ultrasound scan
+  device_model: APPLIO 500 - Toshiba
+  device_date: 2021-01-01
+  exam_indication: Initial evaluation
+  exam_previous: "No"
+  contrast: Radioselectan and Sonovue
+  contrast_route: suprapubic puncture 
+  fillings: 2
+  urinalysis: sterile
+  fever: "No"
+  diversion: "No"
+  antibiotic_prophylaxis: Trimethoprim-sulfamethoxazole
+  exam_duration: PTH0M20
+  urinary_tract_duplication: "No"
+  renal_transplant: "No"
+  bladder_aspect: Bladder trabeculation
+  bladder_volume: 100
+  intraperitoneal_effusion: "No"
+  urethra: Spin-top
+  urinary_tract_results:
+    urinary_tract_id: [ut1, ut2]
+    lateralisation: [Right, Left]
+    renal_height: [80, 87]
+    parenchymal_thinning: ["No", Mild]
+    ureteral_diameter: [0, 4]
+    pelvic_interlabial_diameter: [2, 9]
+    pyelonephritis_sign: ["No", "No"]
+    lithiasis: [1, 0]
+    vesico_ureteral_reflux: [II, IV]
+    renal_parenchymal_anomaly: ["No", ]
+    comment: [4mm lithiasis in the right lower calyx, NA]
+  exam_quality: Good
+  comment: Left mega ureter
+  conclusion: NA
+  conclusion_validation: true
