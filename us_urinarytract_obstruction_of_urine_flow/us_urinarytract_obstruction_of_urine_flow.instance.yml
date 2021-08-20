@@ -1,0 +1,59 @@
+%YAML 1.2
+---
+Exam:
+  schema: https://json-schema.org/draft/2019-09/schema#
+  identifier: id12345678910
+  patient_first_name: John
+  patient_name: Doe
+  patient_birth: 2020-01-01
+  patient_gender: "male"
+  institution: CHR
+  physician: Dr No
+  exam_date_time: 2021-03-03T14:14:00
+  exam_type: US
+  device_model: Logic EX
+  device_date: 2020-01-01
+  exam_indication: Unilateral left postnatal ureterohydronephrosis. Control after resection of valves of the posterior urethra.
+  urinary_tract_duplication: "No"
+  renal_transplant: "No"
+  abdominal_effusion: "No"
+  urinary_upper_tract_results:
+    urinary_upper_tract_id: [uut1, uut2]
+    lateralization: [Left, Right]
+    diversion: [No, No]
+    renal_height: [59, 56]
+    evolution_of_renal_height: [stable, stable]
+    previous_renal_height: [NA, NA]
+    pelvic_dilatation: [Yes, No]
+    anteroposterior_diameter_of_the_renal_pelvis: [20, 4]
+    evolution_of_APD: [Stable, Stable]
+    extrarenal_pelvis_diameter: [25, 4]
+    caliceal_dilatation: [Cup-shaped, No]
+    renal_pelvic_wall: [Normal, Normal]
+    renal_pelvis_content_echogenicity: [Normal, Normal]
+    echogenicity_of_parenchyma: [Normal, Normal]
+    degree_of_cortico-medullary differentiation: [Decreased, Normal]
+    parenchyma_aspect: [short and thin medulla, Normal]
+    parenchyma_thickness: [3, 5]
+    cortical_cyst: [No, No]
+    comment_on_cyst: NA
+    ureterocele: [No, No]
+    ureterocele_diameter: [NA, NA]
+    ureteral_dilatation: [Yes, No]
+    diameter_of_retrovesical_ureter: [10, 0]
+    diameter_of_abdominal_ureter: [15, 0]
+    ureter_wall: [Normal, Normal]
+  urinary_lower_tract_results:
+    baldder_filling: [full]
+    diversion: [No]
+    bladder_wall: [thickened]
+    location_of_the bladder_wall_defect: [diffuse]
+    bladder_wall_thickness: 5
+    initial_bladder_Volume: 42
+    post_void_residual_bladder_volume: 0
+    dilated_posterior_urethra: [No]
+  lithiasis: "No"
+  comment_on_lithiasis: NA
+  conclusion: Unilateral left ureterohydronephrosis. Integrity of the right kidney
+  comment: NA
+  conclusion_validation: true
