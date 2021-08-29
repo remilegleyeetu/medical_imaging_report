@@ -1,0 +1,298 @@
+{
+	"$schema": "https://json-schema.org/draft/2019-09/schema#",
+	"title": "Ultrasound of the urinary tract",
+	"type": "object",
+	"required": ["patient_first_name", "patient_first_name", "patient_birth", "conclusion_validation"],
+	"properties": {
+		"identifier": {
+			"type": "string",
+			"description": "Patient unique identifier",
+			"minLen": 13,
+			"maxLen": 13,
+			"pattern": "^[0-9aAbB]{13}$"
+		},
+		"patient_first_name": {
+			"type": "string",
+			"description": "Patient's first name"
+		},
+		"patient_name": {
+			"type": "string",
+			"description": "Patient's name"
+		},
+		"patient_birth": {
+			"type": "string",
+			"description": "Date of birth, format yyyy-mm-dd",
+			"format": "date"
+		},
+		"patient_gender": {
+			"type": "string",
+			"description": "patient's gender",
+			"enum": ["male", "female", "NA"]
+		},
+		"institution": {
+			"type": "string",
+			"description": "Institution in which the exam is performed"
+		},
+		"physician": {
+			"type": "string",
+			"description": "Physician responsible for the interpretation of the imaging results"
+		},
+		"exam_date_time": {
+			"type": "string",
+			"description": "Date and time of exam, format yyyy-mm-ddThh:mm:ss",
+			"format": "date-time"
+		},
+		"exam_type": {
+			"type": "string",
+			"description": "Exam type",
+			"enum": ["CT", "US", "Radiography", "NA"],
+			"default": "US"
+		},
+		"device_model": {
+			"type": "string",
+			"description": "Model of imaging device"
+		},
+		"device_date": {
+			"type": "string",
+			"description": "Date of device validation",
+			"format": "date"
+		},
+		"exam_indication": {
+			"type": "string",
+			"description": "Exam indication"
+		},
+		"urinary_tract_duplication": {
+			"type": "string",
+			"description": "Duplication of urinary tract resulting in an 'additionnal' urinary tract to describe",
+			"enum": ["No", "Right", "Left", "Bilateral", "Unknown", "NA"],
+			"default": "No"
+		},
+		"renal_transplant": {
+			"type": "string",
+			"description": "Presence of a renal transplant resulting in an 'additionnal' urinary tract to describe",
+			"enum": ["No", "Right", "Left", "Unknown", "NA"],
+			"default": "No"
+		},
+		"abdominal_effusion": {
+			"type": "string",
+			"description": "Presence of a abdominal effusion",
+			"enum": ["No", "Presence", "Unknown", "NA"],
+			"default": "No"
+		},
+		"urinary_upper_tract_results": {
+			"type": "object",
+			"description": "Successive description of urinary tracts results, taking account of the (rare) possibility of anatomical variations",
+			"properties": {
+				"urinary_upper_tract_id": {
+					"type": "string",
+					"description": "Generated hash id for each successively described urinary tract"
+				},
+				"lateralization": {
+					"type": "string",
+					"description": "Lateralisation of kidney",
+					"enum": ["Left", "Right", "Left upper pole", "Left lower pole", "Right upper pole", "Right lower pole", "Left renal transplant", "Right renal transplant"]
+				},
+				"diversion": {
+					"type": "string",
+					"description": "Presence of a urinary diversion in the described urinary tract",
+					"enum": ["No", "jj_stent", "ureteral_catheter", "pyelostomy", "NA"],
+					"default": "No"
+				},
+				"renal_height": {
+					"type": "number",
+					"description": "Measured heigh of the kidney (mm)",
+					"minimum": 0
+				},
+				"evolution_of_renal_height": {
+					"type": "string",
+					"description": "Evolution of the size according to the last ultrasound",
+					"enum": ["increase", "decrease", "stable", "Unknown", "NA"],
+					"default": "Unknown"
+				},
+				"previous_renal_height": {
+					"type": "number",
+					"description": "Previous measured heigh of the kidney (mm)",
+					"minimum": 0
+				},
+				"pelvic_dilatation": {
+					"type": "string",
+					"description": "Presence of pelvic dilatation of the kidney",
+					"enum": ["No", "Yes", "Unknown", "NA"],
+					"default": "No"
+				},
+				"anteroposterior_diameter_of_the_renal_pelvis": {
+					"type": "number",
+					"description": "Measurements of the anteroposterior diameter of the renal pelvis on a transverse section in mm",
+					"minimum": 0
+				},
+				"evolution_of_APD": {
+					"type": "string",
+					"description": "Evolution of the APD as compared to previous imaging exam",
+					"enum": ["Increased", "Stable", "Decreased", "Unknown", "NA"],
+					"default": "NA"
+				},
+				"extrarenal_pelvis_diameter": {
+					"type": "number",
+					"description": "Measurements diameter of the extrarenal pelvis on a transverse section in mm",
+					"minimum": 0
+				},
+				"caliceal_dilatation": {
+					"type": "string",
+					"description": "Description of the appearance of the calyces",
+					"enum": ["No", "Cup-shaped calyces", "Blunting of calyces", "Ballooned Calyces", "Unknown", "NA"],
+					"default": "No"
+				},
+				"renal_pelvic_wall": {
+					"type": "string",
+					"description": "Presence of a thickened renal pelvic wall",
+					"enum": ["Normal", "Thickened", "Unknown", "NA"],
+					"default": "Normal"
+				},
+				"renal_pelvis_content_echogenicity": {
+					"type": "string",
+					"description": "Description of the echogenicity of the renal pelvis contents",
+					"enum": ["Normal", "Hypoechoic", "Hyperechoic", "Unknown", "NA"],
+					"default": "Normal"
+				},
+				"echogenicity_of_parenchyma": {
+					"type": "string",
+					"description": "Echogenicity_of_parenchyma",
+					"enum": ["Normal", "Hyperechogenic cortex", "NA"],
+					"default": "Normal"
+				},
+				"degree_of_corticomedullary_differentiation": {
+					"type": "string",
+					"description": "aspect of corticomedullary differentiation",
+					"enum": ["Normal", "Decreased", "No corticomedullary differentiation", "NA"],
+					"default": "Normal"
+				},
+				"parenchyma_aspect": {
+					"type": "string",
+					"description": "Description of cortex and medulla",
+					"enum": ["Normal", "Short and thin medulla", "No medulla & thin cortex", "NA"],
+					"default": "Normal"
+				},
+				"parenchyma_thickness": {
+					"type": "number",
+					"description": "The renal parenchyma is measured at the thinnest point of the parenchyma on the longitudinal section of the kidney(mm)",
+					"minimum": 0
+				},
+				"cortical_cyst": {
+					"type": "string",
+					"description": "Cysts detected on the exam",
+					"enum": ["No", "presence", "NA"],
+					"default": "No"
+				},
+				"comment_on_cyst": {
+					"type": "string",
+					"description": "Free text for a comment manually added to the description of the cyst"
+				},
+				"ureterocele": {
+					"type": "string",
+					"description": "ureterocele detected on the exam",
+					"enum": ["No", "presence", "NA"],
+					"default": "No"
+				},
+				"ureterocele_diameter": {
+					"type": "number",
+					"description": "Measured diameter of ureterocele (mm)",
+					"minimum": 0
+				},
+				"ureteral_dilatation": {
+					"type": "string",
+					"description": "Ureteral dilatation, as evaluated by the physician",
+					"enum": ["No", "Yes", "Yes,all the way through", "Yes,in its abdominal portion", "Yes, in its pelvic portion", "NA"],
+					"default": "No"
+				},
+				"diameter_of_retrovesical_ureter": {
+					"type": "number",
+					"description": "Maximal measured diameter of the retrovesical ureter (mm)",
+					"minimum": 0
+				},
+				"diameter_of_abdominal_ureter": {
+					"type": "number",
+					"description": "Maximal measured diameter of the ureter (mm)",
+					"minimum": 0
+				},
+				"ureter_wall": {
+					"type": "string",
+					"description": "Presence of a thickened ureter",
+					"enum": ["Normal", "Thickened", "Unknown", "NA"],
+					"default": "Normal"
+				}
+			}
+		},
+		"urinary_lower_tract_results": {
+			"type": "object",
+			"description": "Description of urinary lower tracts results, taking account of the (rare) possibility of anatomical variations",
+			"properties": {
+				"baldder_filling": {
+					"type": "string",
+					"description": "Appearance of bladder filling",
+					"enum": ["Empty", "Partially filled", "Full", "Unknown", "NA"]
+				},
+				"diversion": {
+					"type": "string",
+					"description": "Presence of a urinary diversion in the described urinary tract",
+					"enum": ["No", "Vesical probe", "Cystostomy", "NA"],
+					"default": "No"
+				},
+				"bladder_wall": {
+					"type": "string",
+					"description": "Description of bladder wall",
+					"enum": ["Normal", "Thickened", "Trabeculation", "d*Diverticular", "Unknown", "NA"],
+					"default": "Normal"
+				},
+				"location_of_the_bladder_wall_defect": {
+					"type": "string",
+					"description": "Location of the bladder wall defect",
+					"enum": ["Diffuse", "Focal", "Unknown", "NA"]
+				},
+				"bladder_wall_thickness": {
+					"type": "number",
+					"description": "Measurement of bladder wall in mm",
+					"minimum": 0
+				},
+				"initial_bladder_volume": {
+					"type": "number",
+					"description": "Initail bladder volume in ml",
+					"minimum": 0
+				},
+				"post_void_residual_Bladder_Volume": {
+					"type": "number",
+					"description": "Post void residual volume in ml",
+					"minimum": 0
+				},
+				"dilated_posterior_urethra": {
+					"type": "string",
+					"description": "Urethra dilatation, as evaluated by the physician",
+					"enum": ["No", "Yes", "Unknown", "NA"],
+					"default": "No"
+				}
+			}
+		},
+		"lithiasis": {
+			"type": "string",
+			"description": "lithiasis detected on the exam",
+			"enum": ["No", "presence", "NA"],
+			"default": "No"
+		},
+		"comment_on_lithiasis": {
+			"type": "string",
+			"description": "Free text for a comment manually added to the description of the lithiasis."
+		},
+		"conclusion": {
+			"type": "string",
+			"description": "Text conclusion, automatically generated, and validated by the imaging physician"
+		},
+		"comment": {
+			"type": "string",
+			"description": "Free text for manually added results, or comment"
+		},
+		"conclusion_validation": {
+			"type": "boolean",
+			"description": "The physician must validate the automatically generated conclusion, after manual modification if required",
+			"default": false
+		}
+	}
+}
